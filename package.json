@@ -1,0 +1,23 @@
+{
+  "name": "budgetify",
+  "version": "1.0.0",
+  "description": "Nodejs proyekt",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "keywords": [
+    "node",
+    "j"
+  ],
+  "author": "Oxunjon Abdusalomov",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  },
+  "dependencies": {
+    "ejs": "^3.1.6",
+    "express": "^4.17.3"
+  }
+}
