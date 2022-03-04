@@ -7,16 +7,16 @@ router.post('/add', (req, res) => {
 })
 
 
-router.get('/',(req, res) => {
+router.get('/', (req, res) => {
   res.send("Getting one user's account or admin's account");
 })
 
 
-router.put('/edit',(req,res)=>{
+router.put('/edit/:id', (req, res) => {
   res.send("Updated succesfully")
 })
 
-router.delete('/delete',(req,res)=>{
+router.delete('/delete/:id', (req, res) => {
   res.send("Deleted succesfully");
 })
 

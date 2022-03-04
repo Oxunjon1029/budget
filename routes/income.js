@@ -11,11 +11,11 @@ router.get('/',(req, res) => {
 })
 
 
-router.put('/edit',(req,res)=>{
+router.put('/edit/:id',(req,res)=>{
   res.send("Updated succesfully")
 })
 
-router.delete('/delete',(req,res)=>{
+router.delete('/delete/:id',(req,res)=>{
   res.send("Deleted succesfully");
 })
 
