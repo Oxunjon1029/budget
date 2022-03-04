@@ -6,12 +6,17 @@ router.post('/', (req, res) => {
 })
 
 
-router.route('/:id').get((req, res) => {
-  res.send("Getting a category ");
-}).put((req, res) => {
-  res.send("Updating a category")
-}).delete((req, res) => {
-  res.send("Deleting category");
+router.get('/',(req, res) => {
+  res.send("Getting a category");
+})
+
+
+router.put('/edit',(req,res)=>{
+  res.send("Updated succesfully")
+})
+
+router.delete('/delete',(req,res)=>{
+  res.send("Deleted succesfully");
 })
 
 module.exports = router;

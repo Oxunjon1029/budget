@@ -7,12 +7,17 @@ router.post('/', (req, res) => {
 
 
 
-router.route('/:id').get((req, res) => {
-  res.send("Getting one user");
-}).put((req, res) => {
-  res.send("Updating user")
-}).delete((req, res) => {
-  res.send("Deleting user");
+router.get('/', (req, res) => {
+  res.send("Getting  a user");
+})
+
+
+router.put('/edit', (req, res) => {
+  res.send("Updated succesfully")
+})
+
+router.delete('/delete', (req, res) => {
+  res.send("Deleted succesfully");
 })
 
 module.exports = router;
