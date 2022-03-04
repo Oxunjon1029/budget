@@ -1,14 +1,16 @@
 const { response } = require("express");
 const express = require("express");
 const router = express.Router();
-
+const Account = require('../Constructors/Accounts');
 router.post('/add', (req, res) => {
-  res.send("Account created succesfully");
+  Account.saveAccount();
+  res.send("Account added succesfully");
 })
 
 
 router.get('/', (req, res) => {
-  res.send("Getting one user's account or admin's account");
+  const acc = Account.getAllAccounts();
+  res.send(acc);
 })
 
 
