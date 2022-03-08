@@ -1,6 +1,5 @@
 const express = require("express");
 const app = express();
-const userRoute = require('./routes/users');
 const authenticationRoute = require('./routes/authentication');
 const authorizationRoute = require('./routes/authorization');
 const logOutRoute = require('./routes/logOut');
@@ -9,7 +8,7 @@ const incomeRoute = require('./routes/income');
 const expenseRoute = require('./routes/expense');
 const sumOfAccountRoute = require('./routes/sumOfAccount');
 const categoriesRoute = require('./routes/categories');
-
+const loginRouter = require("./routes/login");
 
 app.use(express.json());
 
@@ -34,7 +33,6 @@ app.get('/render', (req, res) => {
   res.render('index', { title: "Hello world" })
 })
 // user
-app.use('/users', userRoute);
 // authentication
 app.use('/authenticate', authenticationRoute)
 // authorization
@@ -52,7 +50,8 @@ app.use('/sumOfAccounts', sumOfAccountRoute);
 // categories
 app.use('/categories', categoriesRoute);
 
-
+// login
+// app.use('/login',loginRouter)
 
 
 app.listen(3000)

@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-router.post('/', (req, res) => {
+router.post('/add', (req, res) => {
   res.send("expense created succesfully");
 })
 
@@ -15,7 +15,7 @@ router.put('/edit/:id',(req,res)=>{
   res.send("Updated succesfully")
 })
 
-router.delete('/delete/:id',(req,res)=>{
+router.post('/delete/:id',(req,res)=>{
   res.send("Deleted succesfully");
 })
 
