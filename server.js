@@ -18,7 +18,12 @@ const ExtractJwt = require('passport-jwt').ExtractJwt;
 const { jwtCallback } = require("./passport");
 const { adminGuard } = require('./guard');
 const db = require("./database");
-
+const User = require('./models/Users');
+const Account  = require('./models/Accounts');
+const mongoose = require("mongoose");
+const bcrypt = require('bcrypt');
+const mongoUrl = `${process.env.MONGODB_URL}${process.env.DB_NAME}`;
+mongoose.connect(mongoUrl);
 
 app.use(cors())
 app.use(express.json());
@@ -71,6 +76,27 @@ app.get('/users', auth, adminGuard, (req, res) => {
 app.get('/posts', auth, (req, res) => {
   res.json(db.users.filter(user => user.role.toLowerCase() === "user"));
 })
+
+
+userCreateAdmin();
+async function userCreateAdmin() {
+  const user = await new User({ email: "ab@ab.com", password: `${bcrypt.hashSync("123", 10)}`, role: "ADMIN", firstName: "Oxunjon", lastName: "Abdusalomov" });
+  user.save();
+  console.log(user);
+}
+async function userCreateUser() {
+  const user = await new User({ email: "sdsd@dsds.com", password: `${bcrypt.hashSync("234", 10)}`, role: "USER", firstName: "Avaz", lastName: "Sotvoldiyev" });
+  user.save();
+  console.log(user);
+}
+userCreateUser();
+
+accountCreate()
+async function accountCreate(){
+  const account  = await new Account({title:"Dollar"});
+  account.save();
+  console.log(account);
+}
 
 app.listen(PORT, () => {
   console.log(`Server is listening on http://localhost:${PORT}`);
