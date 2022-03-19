@@ -1,10 +1,7 @@
 const mongoose = require("mongoose");
 
 const Transaction = new mongoose.Schema({
-  Type: {
-
-  },
-  account_id: {
+  accountId: {
     type: mongoose.SchemaTypes.ObjectId,
     ref: 'Accounts'
   },
@@ -17,7 +14,10 @@ const Transaction = new mongoose.Schema({
     type: Date,
     default: () => Date.now()
   },
-  Category: {},
+  CategoryId: {
+    type:mongoose.SchemaTypes.ObjectId,
+    ref:'Category'
+  },
   amount: Number,
   linkToFile: String,
   dateOfCreation: {

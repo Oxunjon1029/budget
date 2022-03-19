@@ -7,7 +7,6 @@ router.post('/add', (req, res) => {
     account.save();
 
     res.status(200).json(account);
-    // res.send("Account added succesfully");
   } catch (err) {
     res.status(400).json(err.message);
   }
@@ -17,15 +16,13 @@ router.post('/add', (req, res) => {
 router.get('/', async (req, res) => {
   const account = await Account.find({});
   res.json(account);
-  // res.send("Getting all accounts");
 })
 
 
-router.put(`/edit`, async (req, res) => {
+router.put('/edit', async (req, res) => {
   try {
     const account = await Account.findByIdAndUpdate(req.body._id, req.body, { new: true })
     res.status(200).json(account);
-    // res.send("Updated succesfully");
   } catch (err) {
     res.status(400).json(err.message);
   }

@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 
 const SubscriptionSchema = new mongoose.Schema({
-  account_id: {
+  accountId: {
     type: mongoose.SchemaTypes.ObjectId,
     ref: 'Accounts'
   },
@@ -23,7 +23,7 @@ const SubscriptionSchema = new mongoose.Schema({
     type: Date,
     default: () => Date.now()
   },
-  Category: {
+  CategoryId: {
     type:mongoose.SchemaTypes.ObjectId,
     ref:'Category',
   },

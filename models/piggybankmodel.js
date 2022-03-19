@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
-const PiggyBannkSchema = new mongoose.Schema({
-  account_id: {
+const PiggyBankSchema = new mongoose.Schema({
+  accountId: {
     type: mongoose.SchemaTypes.ObjectId,
     ref: 'Accounts'
   },
@@ -22,7 +22,7 @@ const PiggyBannkSchema = new mongoose.Schema({
     type: Date,
     default: () => Date.now()
   },
-  Category: {
+  CategoryId: {
     type: mongoose.SchemaTypes.ObjectId,
     ref: 'Category',
   },
@@ -37,4 +37,4 @@ const PiggyBannkSchema = new mongoose.Schema({
   }
 });
 
-module.exports = mongoose.model("PiggyBank",PiggyBannkSchema);
+module.exports = mongoose.model("PiggyBank",PiggyBankSchema);

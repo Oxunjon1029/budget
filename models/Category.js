@@ -7,11 +7,11 @@ const Category = new mongoose.Schema({
   },
   Type:[
     {
-      category_id:mongoose.SchemaTypes.ObjectId,
+      expenseId:mongoose.SchemaTypes.ObjectId,
       ref:'Expenses'
     },
     {
-      category_id:mongoose.SchemaTypes.ObjectId,
+      incomeId:mongoose.SchemaTypes.ObjectId,
       ref:'Incomes'
     }
   ]
