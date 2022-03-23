@@ -1,7 +1,6 @@
 const bcrypt = require("bcrypt");
 const { v4: uuid4 } = require("uuid");
 const users = [];
-
 const register = (user) => {
   users.push({
     id: uuid4(),
