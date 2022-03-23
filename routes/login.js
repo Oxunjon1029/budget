@@ -7,7 +7,7 @@ router.post("/", (req, res) => {
 
   if (user) {
     const payload = {
-      id: user._id,
+      id: user.id,
       email: user.email,
       password: user.password,
       role: user.role,
@@ -20,7 +20,7 @@ router.post("/", (req, res) => {
     );
 
     res.status(200).json({
-      Authorization: `Bearer ${token}`
+      Authorization: `${token}`
     })
   } else {
     res.status(401).json({ message: "Invalid credentials" })

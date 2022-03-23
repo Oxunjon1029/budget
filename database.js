@@ -1,7 +1,6 @@
 const bcrypt = require("bcrypt");
 const { v4: uuid4 } = require("uuid");
 const users = [];
-const User = require('./models/Users');
 const register = (user) => {
   users.push({
     id: uuid4(),
@@ -11,12 +10,13 @@ const register = (user) => {
   })
 }
 
-async function getUserByEmail(email) {
-  const user = await User.findOne({ email: email });
+const getUserByEmail = (email) => {
+  const user = users.find(user => user.email === email);
   return user;
 }
-async function loginUser  (email, password){
-  const user = await getUserByEmail(email);
+
+const loginUser = (email, password) => {
+  const user = getUserByEmail(email);
 
   if (user && bcrypt.compareSync(password, user.password)) {
     return user;
