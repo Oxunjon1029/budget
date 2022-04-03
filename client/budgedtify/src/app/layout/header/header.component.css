@@ -1,0 +1,19 @@
+.header {
+  background: blue;
+  display: flex;
+  padding: 2rem;
+  color: #fff;
+}
+.header_logo {
+  width: 100%;
+  text-align: center;
+  align-self: center;
+  font-size: 2rem;
+}
+.header_logout {
+  align-self: center;
+}
+.header_logout a {
+  text-decoration: none;
+}
+

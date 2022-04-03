@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AuthForm</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="auth-form">
+        <h1>Budgetify</h1>
+        <div *ngIf="submitted" class="incorrect_container">
+          <p>Incorrect email or password</p>
+        </div>
+        <form
+          class="auth_form_Form"
+          [formGroup]="loginForm"
+          (ngSubmit)="onSubmit()"
+        >
+          <mat-form-field class="auth_form_row" appearance="outline">
+            <mat-label>Email</mat-label>
+            <input
+              type="email"
+              matInput
+              placeholder="email@domain.com"
+              formControlName="email"
+              class="aut_input"
+            />
+            <mat-error
+              *ngIf="isValidEmail['email'].errors?.['required'] && isValidEmail['email'].dirty"
+            >
+              Required field is empty
+            </mat-error>
+            <mat-error
+              *ngIf="isValidEmail['email'].errors?.['email'] && isValidEmail['email'].dirty"
+            >
+              Please enter valid email
+            </mat-error>
+            <!-- <mat-error *ngIf="isValid('email')"
+              >Please enter valid email</mat-error
+            > -->
+          </mat-form-field>
+          <mat-form-field class="auth_form_row" appearance="outline">
+            <mat-label>Password</mat-label>
+            <input
+              type="password"
+              class="auth_input"
+              matInput
+              formControlName="password"
+            />
+            <mat-error
+              *ngIf="isValidEmail['password'].errors?.['required'] && isValidEmail['email'].dirty"
+              >Required field is empty</mat-error
+            >
+          </mat-form-field>
+          <button
+            type="submit"
+            [disabled]="loginForm.invalid"
+            style="width: 100%"
+            color="primary"
+            mat-raised-button
+          >
+            Login
+          </button>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
