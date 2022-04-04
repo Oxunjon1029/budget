@@ -11,8 +11,8 @@
       <button *ngIf="isLoggedIn" class="header_icon_button" mat-icon-button>
         <mat-icon>menu</mat-icon>
       </button>
-      <div class="header_logo">Account</div>
-      <div *ngIf="isLoggedIn" class="header_logout">
+      <div class="header__logo">Account</div>
+      <div *ngIf="isLoggedIn" class="header__logout">
         <a routerLink="/login" mat-raised-button (click)="logOut()">Logout</a>
       </div>
     </header>

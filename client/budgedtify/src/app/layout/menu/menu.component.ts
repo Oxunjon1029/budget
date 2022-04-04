@@ -5,7 +5,7 @@ import { MENU_CONFIG } from './menu.config';
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
-  styleUrls: ['./menu.component.css'],
+  styleUrls: ['./menu.component.scss'],
 })
 export class MenuComponent {
   menu: IMenuItem[] = MENU_CONFIG;

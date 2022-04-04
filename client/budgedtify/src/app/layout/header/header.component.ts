@@ -4,7 +4,7 @@ import { AuthService } from 'src/app/auth/auth.service';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css'],
+  styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent {
   @Input() isLoggedIn!: boolean;

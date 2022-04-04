@@ -7,41 +7,38 @@
     <title>AuthForm</title>
   </head>
   <body>
-    <div class="container">
-      <div class="auth-form">
+    <div class="auth__container">
+      <div class="auth__form">
         <h1>Budgetify</h1>
-        <div *ngIf="submitted" class="incorrect_container">
+        <div *ngIf="submitted" class="auth__incorrect_container">
           <p>Incorrect email or password</p>
         </div>
         <form
-          class="auth_form_Form"
+          class="auth__form_layout"
           [formGroup]="loginForm"
           (ngSubmit)="onSubmit()"
         >
-          <mat-form-field class="auth_form_row" appearance="outline">
+          <mat-form-field class="auth__form_row" appearance="outline">
             <mat-label>Email</mat-label>
             <input
               type="email"
               matInput
               placeholder="email@domain.com"
               formControlName="email"
-              class="aut_input"
+              class="aut__input"
             />
             <mat-error
-              *ngIf="isValidEmail['email'].errors?.['required'] && isValidEmail['email'].dirty"
+              *ngIf="isValidControllers['email'].errors?.['required'] && isValidControllers['email'].dirty"
             >
               Required field is empty
             </mat-error>
             <mat-error
-              *ngIf="isValidEmail['email'].errors?.['email'] && isValidEmail['email'].dirty"
+              *ngIf="isValidControllers['email'].errors?.['email'] && isValidControllers['email'].dirty"
             >
               Please enter valid email
             </mat-error>
-            <!-- <mat-error *ngIf="isValid('email')"
-              >Please enter valid email</mat-error
-            > -->
           </mat-form-field>
-          <mat-form-field class="auth_form_row" appearance="outline">
+          <mat-form-field class="auth__form_row" appearance="outline">
             <mat-label>Password</mat-label>
             <input
               type="password"
@@ -50,7 +47,7 @@
               formControlName="password"
             />
             <mat-error
-              *ngIf="isValidEmail['password'].errors?.['required'] && isValidEmail['email'].dirty"
+              *ngIf="isValidControllers['password'].errors?.['required'] && isValidControllers['email'].dirty"
               >Required field is empty</mat-error
             >
           </mat-form-field>

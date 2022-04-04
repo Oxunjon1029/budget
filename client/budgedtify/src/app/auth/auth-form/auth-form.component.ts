@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Form, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
 import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-auth-form',
   templateUrl: './auth-form.component.html',
-  styleUrls: ['./auth-form.component.css'],
+  styleUrls: ['./auth-form.component.scss'],
 })
 export class AuthFormComponent {
   constructor(private authservice: AuthService, private router: Router) {}
+
   loginForm: FormGroup = new FormGroup({
     email: new FormControl('', [
       Validators.required,
@@ -21,14 +21,8 @@ export class AuthFormComponent {
 
   responsedata: any;
   submitted = false;
-  // isValid(controlname: string) {
-  //   return (
-  //     this.loginForm.get(controlname)?.invalid &&
-  //     this.loginForm.get(controlname)?.touched
-  //   );
-  // }
 
-  get isValidEmail() {
+  get isValidControllers() {
     return this.loginForm.controls;
   }
   onSubmit() {
