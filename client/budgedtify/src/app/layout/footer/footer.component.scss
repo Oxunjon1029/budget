@@ -1,0 +1,12 @@
+.footer {
+  background: blue;
+  color: #fff;
+  display: flex;
+  padding: 1rem;
+
+  &__copyright {
+    text-align: center;
+    align-self: center;
+    width: 100%;
+  }
+}
