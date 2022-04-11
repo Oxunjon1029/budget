@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="center__conatiner">
+      <div class="center__search-filter-container">
+        <mat-form-field class="center__search-section" appearance="fill">
+          <input type="search" matInput placeholder="Search..." />
+        </mat-form-field>
+        <div class="center__filter-section">
+          <div class="center__filter-section__byDate">
+            <mat-icon>filter_list</mat-icon>
+            <div>Transaction date</div>
+          </div>
+          <div class="center__filter-section__incom-expense-filter">
+            <button class="center__income-btn">
+              <div class="center__income_icon">
+                <mat-icon>arrow_upward</mat-icon>
+              </div>
+              <div>Income</div>
+            </button>
+            <button class="center__expense-btn">
+              <div class="center__expense_icon">
+                <mat-icon>arrow_downward</mat-icon>
+              </div>
+              <div>Expense</div>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="center__transactions-container">
+        <div
+          class="center__transaction-cards"
+          *ngFor="let transaction of transactions"
+        >
+          <div class="center__btn-des-date">
+            <div class="center__income_icon">
+              <mat-icon>arrow_upward</mat-icon>
+            </div>
+            <div class="center__des-date">
+              <h4>{{ transaction.description }}</h4>
+              <h6>{{ transaction.createdAt | date }}</h6>
+            </div>
+          </div>
+          <div class="center__amount">
+            <h2>{{ transaction.amount }}</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,12 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body>
-  <h1 class="accounts__h1">Accounts</h1>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="accounts">
+      <div class="accounts__add-button-container">
+        <button class="accounts__add_btn" (click)="openDialog()">
+          <mat-icon class="accounts__add-icon">add_circle_outline</mat-icon>
+          <div>Add Account</div>
+        </button>
+      </div>
+      <div class="accounts__inc-exp-trans-pggb-container">
+        <div class="accounts__inc-exp-trans-conatiner">
+          <button class="accounts__income_btn">
+            <div class="accounts__income_icon">
+              <mat-icon>arrow_upward</mat-icon>
+            </div>
+            <div>Income</div>
+          </button>
+          <button class="accounts__expense_btn">
+            <div class="accounts__expense_icon">
+              <mat-icon>arrow_downward</mat-icon>
+            </div>
+            <div>Expense</div>
+          </button>
+          <button class="accounts__trans_btn">
+            <mat-icon style="color: grey">add_circle</mat-icon>
+            <div>Transaction</div>
+          </button>
+        </div>
+        <div class="accounts__pggb-container">
+          <button class="accounts__pggb_btn">Add Piggy Bank</button>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>

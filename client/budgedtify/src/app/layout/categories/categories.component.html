@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="category__conatiner">
+      <div class="category__search-section">
+        <mat-form-field appearance="fill" style="width: 30%;">
+          <input matInput placeholder="Search..." />
+        </mat-form-field>
+      </div>
+      <div class="category__cards-btns-section">
+        <div class="category__cards-section">
+          <div class="category__cards" *ngFor="let category of categories">
+            <div class="category__cards-title">
+              {{ category.title }}
+            </div>
+            <div class="category__cards-btns">
+              <div class="category__cards-edit-btn">
+                <mat-icon>mode_edit</mat-icon>
+              </div>
+              <div class="category__cards-delete-btn">
+                <mat-icon>delete_outline</mat-icon>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="category__btns-section">
+          <button class="category__income-btn">
+            <div class="category__income_icon">
+              <mat-icon>arrow_upward</mat-icon>
+            </div>
+            <div>Income</div>
+          </button>
+          <button class="category__expense-btn">
+            <div class="category__expense_icon">
+              <mat-icon>arrow_downward</mat-icon>
+            </div>
+            <div>Expense</div>
+          </button>
+          <button class="category__trans_btn">
+            <mat-icon style="color: white">add_circle</mat-icon>
+            <div>Add Category</div>
+          </button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

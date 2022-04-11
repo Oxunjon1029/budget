@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="left-side__container">
+      <mat-card class="left-side__cards" *ngFor="let account of responsedata">
+        <mat-card-header>
+          <mat-card-title class="left-side__card-title">
+            <h1 class="left-side__title">{{ account.title }}</h1>
+            <h1 class="left-side__symbol">{{ account.symbol }}</h1>
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="left-side__card-content">
+          <h1 class="left-side__amount">{{ account.description }}</h1>
+          <button class="left-side__details" mat-button>Details</button>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <div class="left-side__add-btn" (click)="openDialog()"><mat-icon>add</mat-icon></div>
+  </body>
+</html>

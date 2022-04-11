@@ -8,11 +8,6 @@ import { tap } from 'rxjs';
 export class AuthService {
   constructor(private http: HttpClient) {}
   login(email: string, password: string) {
-    // const params = new HttpParams()
-    //   .set('email', email)
-    //   .set('password', password);
-    // console.log(params);
-
     return this.http
       .post(
         'http://localhost:3000/login',
@@ -24,6 +19,7 @@ export class AuthService {
   logout() {
     localStorage.removeItem('idToken');
     localStorage.removeItem('expiresIn');
+    localStorage.removeItem("userId");
   }
 
   isLoggedIn() {
@@ -34,9 +30,13 @@ export class AuthService {
     return false;
   }
 
+  getUsers(){
+     return this.http.get('http://localhost:3000/login')
+  }
   private setSession(res: any) {
     const expiresIn = Date.now() + Number(res.expiresIn);
     localStorage.setItem('idToken', res.Authorization);
     localStorage.setItem('expiresIn', String(expiresIn));
+    localStorage.setItem('userId',res.userId)
   }
 }
