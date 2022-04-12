@@ -10,7 +10,12 @@
     <div class="center__conatiner">
       <div class="center__search-filter-container">
         <mat-form-field class="center__search-section" appearance="fill">
-          <input type="search" matInput placeholder="Search..." />
+          <input
+            type="search"
+            class="center__search-input"
+            matInput
+            placeholder="Search..."
+          />
         </mat-form-field>
         <div class="center__filter-section">
           <div class="center__filter-section__byDate">
@@ -44,7 +49,7 @@
             </div>
             <div class="center__des-date">
               <h4>{{ transaction.description }}</h4>
-              <h6>{{ transaction.createdAt | date }}</h6>
+              <h6>{{ transaction.createdAt }}</h6>
             </div>
           </div>
           <div class="center__amount">

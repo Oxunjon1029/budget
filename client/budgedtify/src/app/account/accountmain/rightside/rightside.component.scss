@@ -2,7 +2,8 @@
   &__container {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: center;
+    gap: 2rem;
     height: 85vh;
   }
 
@@ -12,7 +13,7 @@
     align-items: center;
     justify-content: space-between;
     border-radius: 0.6rem;
-    padding: 5px;
+    padding: 8px;
     font-weight: 800;
     cursor: pointer;
     background: rgba(223, 114, 255, 0.65);

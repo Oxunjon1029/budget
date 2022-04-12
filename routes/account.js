@@ -1,11 +1,13 @@
 const express = require("express");
 const passport = require("passport");
 const Accounts = require("../models/Accounts");
+const Currency = require("../models/Currency");
 const router = express.Router();
 const auth = passport.authenticate('jwt', { session: false });
 router.post('/add', auth, async (req, res) => {
   const { title, currency, description } = req.body;
-  const account = await new Accounts({ title: title, currency: currency, description: description, user_id: req.user._id });
+  const symbol = await Currency.find({})
+  const account = await new Accounts({ title: title, currency: currency, description: description, user_id: req.user._id, symbol: symbol.symbol });
   await account.save();
   res.status(200).json(account);
   res.send("Account added succesfully");

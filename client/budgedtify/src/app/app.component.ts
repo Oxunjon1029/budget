@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Subject } from 'rxjs';
 import { AuthService } from './auth/auth.service';
 import { SpinnerService } from './shared/services/spinner.service';
 
@@ -8,9 +9,10 @@ import { SpinnerService } from './shared/services/spinner.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
   title = 'budgedtify';
   isSpinnerVisible: boolean = false;
+  controlSubject: Subject<boolean> = new Subject();
   constructor(
     private authservice: AuthService,
     private router: Router,
@@ -29,5 +31,9 @@ export class AppComponent implements OnInit {
   logout() {
     this.authservice.logout();
     this.router.navigateByUrl('/login');
+  }
+  ngOnDestroy() {
+    this.controlSubject.next(true);
+    this.controlSubject.unsubscribe();
   }
 }

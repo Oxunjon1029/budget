@@ -15,7 +15,6 @@ export class AccountFrontComponent {
       height:'450px'
     });
     dialogRef.afterClosed().subscribe((data) => {
-      console.log('dialog closed');
     });
   }
   

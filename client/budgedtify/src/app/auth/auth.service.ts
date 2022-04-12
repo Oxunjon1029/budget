@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { tap } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -30,7 +30,7 @@ export class AuthService {
     return false;
   }
 
-  getUsers(){
+  getUsers():Observable<Object>{
      return this.http.get('http://localhost:3000/login')
   }
   private setSession(res: any) {

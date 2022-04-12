@@ -38,7 +38,6 @@ export class AuthFormComponent {
             this.accountService.getAllAccounts().subscribe((data: any) => {
               if (data !== null) {
                 this.responseaccounts = data;
-                console.log(typeof this.responseaccounts);
                 data.forEach((item: any) => {
                   if (item.user_id === localStorage.getItem('userId')) {
                     this.router.navigateByUrl('/accountsMain');

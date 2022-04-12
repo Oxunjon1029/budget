@@ -2,6 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { Subject, takeUntil } from 'rxjs';
 import { AuthService } from 'src/app/auth/auth.service';
 import { AccountFrontService } from '../account-front.service';
 
@@ -18,8 +19,8 @@ export class DialogComponent implements OnInit {
     private authservice: AuthService
   ) {}
   currencies: any;
-
-  ngOnInit():void {
+  controlSubject: Subject<boolean> = new Subject();
+  ngOnInit(): void {
     console.log(
       this.accountService.getCurrencies().subscribe((data) => {
         this.currencies = data;
@@ -38,27 +39,30 @@ export class DialogComponent implements OnInit {
     this.dialogRef.close();
   }
   resdata: any;
-  onCreateAccount():void {
+  onCreateAccount(): void {
     const { title, currency, description } = this.createAccountForm.value;
     if (this.createAccountForm.valid) {
-      this.accountService.createAccount(title, currency, description).subscribe(
-        (res) => {
-          if (res !== null) {
-            this.resdata = res;
-            if (window.location.pathname === '/accountsMain') {
-              window.location.reload();
-            } else {
-              this.router.navigateByUrl('/accountsMain');
-            }
-            console.log(res);
+      this.accountService
+        .createAccount(title, currency, description)
+        .pipe(takeUntil(this.controlSubject))
+        .subscribe(
+          (res) => {
+            if (res !== null) {
+              this.resdata = res;
+              if (window.location.pathname === '/accountsMain') {
+                window.location.reload();
+              } else {
+                this.router.navigateByUrl('/accountsMain');
+              }
+              console.log(res);
 
-            this.dialogRef.close();
+              this.dialogRef.close();
+            }
+          },
+          (err) => {
+            console.log(err);
           }
-        },
-        (err) => {
-          console.log(err);
-        }
-      );
+        );
     }
   }
 }

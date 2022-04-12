@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { asyncScheduler, BehaviorSubject, Subject } from 'rxjs';
+import { asyncScheduler, BehaviorSubject, Observable, Subject } from 'rxjs';
 import { observeOn } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root',
@@ -10,7 +10,7 @@ export class SpinnerService {
   );
   constructor() {}
 
-  getIsSpinnerVisible$() {
+  getIsSpinnerVisible$():Observable<boolean> {
     return this.isSpinnerVisible$
       .asObservable()
       .pipe(observeOn(asyncScheduler));
