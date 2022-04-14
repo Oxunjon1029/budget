@@ -12,15 +12,25 @@
         <mat-card-header>
           <mat-card-title class="left-side__card-title">
             <h1 class="left-side__title">{{ account.title }}</h1>
-            <section class="left-side__symbol"><div>{{ account.currency }}</div></section>
+            <section class="left-side__symbol">
+              <div>{{ account.currency }}</div>
+            </section>
           </mat-card-title>
         </mat-card-header>
         <mat-card-content class="left-side__card-content">
           <h1 class="left-side__amount">{{ account.description }}</h1>
-          <button class="left-side__details" mat-button>Details</button>
+          <button
+            class="left-side__details"
+            mat-button
+            (click)="openDialogMain(account._id)"
+          >
+            Details
+          </button>
         </mat-card-content>
       </mat-card>
     </div>
-    <div class="left-side__add-btn" (click)="openDialog()"><mat-icon>add</mat-icon></div>
+    <div class="left-side__add-btn" (click)="openDialog()">
+      <mat-icon>add</mat-icon>
+    </div>
   </body>
 </html>

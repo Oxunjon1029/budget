@@ -1,6 +1,7 @@
 require('dotenv').config();
 const express = require("express");
 const app = express();
+// const bodyParser = require('body-parser');
 const authenticationRoute = require('./routes/authentication');
 const authorizationRoute = require('./routes/authorization');
 const logOutRoute = require('./routes/logOut');
@@ -27,7 +28,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.static('public'));
 app.use(passport.initialize());
 app.set("view engine", "ejs")
-
+// require('body-parser-zlib')(bodyParser);
+// app.use(bodyParser.zlib)();
 const PORT = process.env.PORT;
 
 const auth = passport.authenticate('jwt', { session: false });

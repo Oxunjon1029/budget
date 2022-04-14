@@ -16,7 +16,7 @@ export class HeaderComponent {
     this.loggedOutClicked.emit();
     return false;
   }
-  logOut() {
+  logOut(): void {
     return this.authservice.logout();
   }
 }

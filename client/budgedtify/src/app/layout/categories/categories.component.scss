@@ -77,11 +77,29 @@
     height: 1.5rem;
     border-radius: 50%;
     color: white;
+    justify-content: center;
+    align-self: center;
   }
   &__income_icon {
     background-color: green;
   }
   &__expense_icon {
     background-color: red;
+  }
+  &__search-section-next {
+    display: flex;
+    width: 30%;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.6rem;
+    border:1px solid ;
+    padding: 8px;
+    margin-bottom: 10px;
+  }
+  &__search-input {
+    width: 100%;
+    outline: none;
+    border:0;
+    background-color: transparent;
   }
 }

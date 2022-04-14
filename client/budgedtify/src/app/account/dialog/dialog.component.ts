@@ -3,8 +3,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
-import { AuthService } from 'src/app/auth/auth.service';
 import { AccountFrontService } from '../account-front.service';
+import { Accounts } from '../accounts.interface';
 
 @Component({
   selector: 'app-dialog',
@@ -16,7 +16,6 @@ export class DialogComponent implements OnInit {
     private dialogRef: MatDialogRef<DialogComponent>,
     private accountService: AccountFrontService,
     private router: Router,
-    private authservice: AuthService
   ) {}
   currencies: any;
   controlSubject: Subject<boolean> = new Subject();
@@ -26,19 +25,25 @@ export class DialogComponent implements OnInit {
         this.currencies = data;
       })
     );
-    this.authservice.getUsers().subscribe((data) => {
-      console.log(data);
-    });
+    
   }
   createAccountForm: FormGroup = new FormGroup({
-    title: new FormControl('', Validators.required),
+    title: new FormControl('', [
+      Validators.required,
+      Validators.maxLength(128),
+      Validators.pattern('^[a-zA-Z,.!?\\s-]*$'),
+    ]),
     currency: new FormControl('', Validators.required),
     description: new FormControl(''),
   });
   onNoClick(): void {
     this.dialogRef.close();
   }
-  resdata: any;
+
+  get isValidControllers() {
+    return this.createAccountForm.controls;
+  }
+  resdata: Accounts[] = [];
   onCreateAccount(): void {
     const { title, currency, description } = this.createAccountForm.value;
     if (this.createAccountForm.valid) {
@@ -46,7 +51,7 @@ export class DialogComponent implements OnInit {
         .createAccount(title, currency, description)
         .pipe(takeUntil(this.controlSubject))
         .subscribe(
-          (res) => {
+          (res: Accounts[]) => {
             if (res !== null) {
               this.resdata = res;
               if (window.location.pathname === '/accountsMain') {

@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AccountFrontComponent } from './account-front/account-front.component';
+import { SharedModule } from '../shared/shared.module';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from '../auth/auth.guard';
-import { SharedModule } from '../shared/shared.module';
 import { DialogComponent } from './dialog/dialog.component';
 import { AccountmainComponent } from './accountmain/accountmain.component';
 import { DialogmainComponent } from './dialogmain/dialogmain.component';
@@ -11,6 +11,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { LeftsideComponent } from './accountmain/leftside/leftside.component';
 import { CenterComponent } from './accountmain/center/center.component';
 import { RightsideComponent } from './accountmain/rightside/rightside.component';
+import { DeletedialogComponent } from './deletedialog/deletedialog.component';
+import { DialogeditComponent } from './dialogedit/dialogedit.component';
+// import { DialogeditComponent } from './dialogedit/dialogedit.component';
 const routes: Routes = [
   {
     path: 'accounts',
@@ -20,18 +23,20 @@ const routes: Routes = [
   {
     path: 'accountsMain',
     component: AccountmainComponent,
-    canActivate:[AuthGuard]
+    canActivate: [AuthGuard],
   },
 ];
 @NgModule({
   declarations: [
     AccountFrontComponent,
     DialogComponent,
+    DialogeditComponent,
     AccountmainComponent,
     DialogmainComponent,
     LeftsideComponent,
     CenterComponent,
     RightsideComponent,
+    DeletedialogComponent,
   ],
   imports: [
     CommonModule,
@@ -39,6 +44,6 @@ const routes: Routes = [
     SharedModule,
     ReactiveFormsModule,
   ],
-  entryComponents: [DialogComponent, DialogmainComponent],
+  entryComponents: [DialogComponent, DialogmainComponent, DialogeditComponent],
 })
 export class AccountModule {}

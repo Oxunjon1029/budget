@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Observable } from 'rxjs';
 import { AccountFrontService } from '../../account-front.service';
+import { Accounts } from '../../accounts.interface';
 import { DialogComponent } from '../../dialog/dialog.component';
+import { DialogmainComponent } from '../../dialogmain/dialogmain.component';
 class AllAccounts {
   constructor(
     public title: string,
@@ -20,11 +21,11 @@ export class LeftsideComponent implements OnInit {
     private accountService: AccountFrontService,
     public dialog: MatDialog
   ) {}
-  responsedata: any;
+  responsedata: Accounts[] = [];
 
   ngOnInit(): void {
     this.accountService.getAllAccounts().subscribe(
-      (data) => {
+      (data: Accounts[]) => {
         if (data !== null) {
           this.responsedata = data;
         }
@@ -40,8 +41,25 @@ export class LeftsideComponent implements OnInit {
       width: '400px',
       height: '450px',
     });
-    dialogRef.afterClosed().subscribe((data) => {
-      console.log('dialog closed');
-    });
+    dialogRef.afterClosed().subscribe(() => {});
+  }
+  openDialogMain(id: string): void {
+    this.accountService.getAccountById(id).subscribe(
+      (data: Accounts[]) => {
+        if (data !== null) {
+          console.log(data, +' ' + ' ' + data);
+
+          const dialogRef = this.dialog.open(DialogmainComponent, {
+            width: '400px',
+            height: '450px',
+            data: data,
+          });
+          dialogRef.afterClosed().subscribe(() => {});
+        }
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
   }
 }

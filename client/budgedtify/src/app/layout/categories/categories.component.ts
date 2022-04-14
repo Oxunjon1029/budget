@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Categories } from './categories.interface';
 
 @Component({
   selector: 'app-categories',
@@ -8,7 +9,7 @@ import { Component } from '@angular/core';
 export class CategoriesComponent {
   constructor() {}
 
-  categories: Array<any> = [
+  categories: Categories[] = [
     {
       title: 'Food',
     },

@@ -7,15 +7,15 @@
     <title>Header</title>
   </head>
   <body>
-    <header class="header">
-      <button *ngIf="isLoggedIn" class="header__icon_button">Budgetify</button>
+    <header class="header" *ngIf="isLoggedIn" >
+      <button *ngIf="isLoggedIn" class="header__icon_button" routerLink="/accountsMain">Budgetify</button>
       <div *ngIf="isLoggedIn" class="header__logo">
         <div class="header__ul-panel">
-          <button routerLink="/category" routerActiveLink="header__active-btn">Categories</button>
-          <button>Subscriptions</button>
-          <button>Obligatory</button>
-          <button>Statistics</button>
-          <button>Admin</button>
+          <a routerLink="/category" routerLinkActive="header__active-btn" [routerLinkActiveOptions]="{exact:true}">Categories</a>
+          <a routerLink="/aca" routerLinkActive="header__active-btn" [routerLinkActiveOptions]="{exact:true}">Subscriptions</a>
+          <a>Obligatory</a>
+          <a>Statistics</a>
+          <a>Admin</a>
         </div>
       </div>
       <div

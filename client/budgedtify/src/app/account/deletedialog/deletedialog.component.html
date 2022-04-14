@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="deletedialog__title-container" mat-dialog-title>
+      <div class="deletedialog__title">Delete Account</div>
+      <mat-icon (click)="onNoClick()">clear</mat-icon>
+    </div>
+    <hr />
+    <div class="deletedialog__content-container" mat-dialog-content>
+      <h1>Are you sure to delete this account</h1>
+    </div>
+    <div class="deletedialog__actions-container" mat-dialog-actions>
+      <button  mat-button (click)="onDeleteAccount(id)">Yes</button>
+      <button mat-button (click)="onNoClick()">No</button>
+    </div>
+  </body>
+</html>

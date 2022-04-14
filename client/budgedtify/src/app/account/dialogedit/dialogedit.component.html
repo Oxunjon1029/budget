@@ -1,20 +1,27 @@
-<div class="create-account__title" mat-dialog-title>
-  <div>Create Account</div>
-  <mat-icon class="create-account__clear-icon" (click)="onNoClick()"
+<div class="edit-account__title" mat-dialog-title>
+  <div>Edit Account</div>
+  <mat-icon class="edit-account__clear-icon" (click)="onNoClick()"
     >clear</mat-icon
   >
 </div>
 <hr />
-<div class="create-account__content">
+<div class="edit-account__content" *ngFor="let account of accounts">
   <form
-    [formGroup]="createAccountForm"
-    class="create-account__content-form"
+    [formGroup]="EditAccountForm"
+    class="edit-account__content-form"
     mat-dialog-content
-    (ngSubmit)="onCreateAccount()"
+    
+    (ngSubmit)="editAccounts(account._id)"
   >
-    <mat-form-field appearance="fill" class="create-account__matForm">
+    <mat-form-field appearance="fill" class="edit-account__matForm">
       <mat-label>Title</mat-label>
-      <input type="text" matInput required formControlName="title" />
+      <input
+        value="{{ account.title }}"
+        type="text"
+        matInput
+        required
+        formControlName="title"
+      />
       <mat-error
         *ngIf="isValidControllers['title'].touched && isValidControllers['title'].errors?.['required']"
         >Required field is empty</mat-error
@@ -35,7 +42,7 @@
       >
     </mat-form-field>
 
-    <mat-form-field class="create-account__matForm" appearance="fill">
+    <mat-form-field class="edit-account__matForm" appearance="fill">
       <mat-label>Currency</mat-label>
       <mat-select required formControlName="currency" matNativeControl>
         <mat-option
@@ -49,15 +56,19 @@
         >Required field is empty</mat-error
       >
     </mat-form-field>
-    <mat-form-field class="create-account__matForm">
+    <mat-form-field class="edit-account__matForm">
       <mat-label>Description</mat-label>
-      <textarea matInput formControlName="description"></textarea>
+      <textarea
+        matInput
+        value="{{ account.description }}"
+        formControlName="description"
+      ></textarea>
     </mat-form-field>
-    <div class="create-account__actions" mat-dialog-actions>
+    <div class="edit-account__actions" mat-dialog-actions>
       <button mat-raised-button (click)="onNoClick()">Close</button>
       <button
         type="submit"
-        [disabled]="createAccountForm.invalid"
+        [disabled]="EditAccountForm.invalid"
         mat-raised-button
         cdkFocusInitial
       >

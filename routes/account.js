@@ -23,16 +23,25 @@ router.get('/', auth, async (req, res) => {
   res.send("Getting all accounts");
 })
 
-
-router.post('/edit/:id', async (req, res) => {
-  const account = await Accounts.findOneAndUpdate(req.body._id, { new: true });
+router.get('/:id', auth, async (req, res) => {
+  const account = await Accounts.find({ _id: req.params.id });
+  res.status(200).send(account);
+})
+router.post('/edit/:id', auth, async (req, res) => {
+  const { title, description, currency } = req.body
+  const account = await Accounts.findOneAndUpdate(req.params.id, { title: title, description: description, currency: currency }, { new: true });
   account.save()
   res.send(account)
   res.send("Updated succesfully");
 })
 
-router.post('/delete/:id', (req, res) => {
-  res.send("Deleted succesfully");
+router.delete('/deleteAccount/:id', auth, async (req, res) => {
+  await Accounts.findOneAndDelete({ _id: req.params.id }, function (err, res) {
+    response.setHeader("Content-Type", "text/html");
+    console.log("Deleting Product " + req.params.id);
+    res.render('deleted')
+    res.status(200).json({ message: "Deleted successfully" })
+  });
 })
 
 module.exports = router;
