@@ -1,29 +1,23 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { tap } from 'rxjs';
+import { Observable, tap } from 'rxjs';
+import { Users } from './users.interface';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
   constructor(private http: HttpClient) {}
-  login(email: string, password: string) {
-    // const params = new HttpParams()
-    //   .set('email', email)
-    //   .set('password', password);
-    // console.log(params);
-
+  login(email: string, password: string): Observable<Users[]> {
     return this.http
-      .post(
-        'http://localhost:3000/login',
-        { email,password }
-      )
+      .post<Users[]>('http://localhost:3000/login', { email, password })
       .pipe(tap((res) => this.setSession(res)));
   }
 
   logout() {
     localStorage.removeItem('idToken');
     localStorage.removeItem('expiresIn');
+    localStorage.removeItem('userId');
   }
 
   isLoggedIn() {
@@ -38,5 +32,6 @@ export class AuthService {
     const expiresIn = Date.now() + Number(res.expiresIn);
     localStorage.setItem('idToken', res.Authorization);
     localStorage.setItem('expiresIn', String(expiresIn));
+    localStorage.setItem('userId', res.userId);
   }
 }

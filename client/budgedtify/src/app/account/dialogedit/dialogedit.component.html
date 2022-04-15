@@ -1,0 +1,79 @@
+<div class="edit-account__title" mat-dialog-title>
+  <div>Edit Account</div>
+  <mat-icon class="edit-account__clear-icon" (click)="onNoClick()"
+    >clear</mat-icon
+  >
+</div>
+<hr />
+<div class="edit-account__content" *ngFor="let account of accounts">
+  <form
+    [formGroup]="EditAccountForm"
+    class="edit-account__content-form"
+    mat-dialog-content
+    
+    (ngSubmit)="editAccounts(account._id)"
+  >
+    <mat-form-field appearance="fill" class="edit-account__matForm">
+      <mat-label>Title</mat-label>
+      <input
+        value="{{ account.title }}"
+        type="text"
+        matInput
+        required
+        formControlName="title"
+      />
+      <mat-error
+        *ngIf="isValidControllers['title'].touched && isValidControllers['title'].errors?.['required']"
+        >Required field is empty</mat-error
+      >
+      <mat-error
+        *ngIf="
+          isValidControllers['title'].touched &&
+          isValidControllers['title'].hasError('maxlength')
+        "
+        >Maximum of 128 words</mat-error
+      >
+      <mat-error
+        *ngIf="
+          isValidControllers['title'].touched &&
+          isValidControllers['title'].errors?.['pattern']
+        "
+        >Please, don't use any special characters</mat-error
+      >
+    </mat-form-field>
+
+    <mat-form-field class="edit-account__matForm" appearance="fill">
+      <mat-label>Currency</mat-label>
+      <mat-select required formControlName="currency" matNativeControl>
+        <mat-option
+          *ngFor="let currency of currencies"
+          value="{{ currency.symbol }}"
+          >{{ currency.name }}</mat-option
+        >
+      </mat-select>
+      <mat-error
+        *ngIf="isValidControllers['currency'].touched && isValidControllers['currency'].errors?.['required']"
+        >Required field is empty</mat-error
+      >
+    </mat-form-field>
+    <mat-form-field class="edit-account__matForm">
+      <mat-label>Description</mat-label>
+      <textarea
+        matInput
+        value="{{ account.description }}"
+        formControlName="description"
+      ></textarea>
+    </mat-form-field>
+    <div class="edit-account__actions" mat-dialog-actions>
+      <button mat-raised-button (click)="onNoClick()">Close</button>
+      <button
+        type="submit"
+        [disabled]="EditAccountForm.invalid"
+        mat-raised-button
+        cdkFocusInitial
+      >
+        Save
+      </button>
+    </div>
+  </form>
+</div>

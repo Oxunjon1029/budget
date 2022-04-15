@@ -19,7 +19,7 @@ async function getUserByEmail(email) {
 async function loginUser(email, password) {
   const user = await getUserByEmail(email);
   console.log(user);
-  if (user && bcrypt.compareSync(password, user.password)) {
+  if (user &&  bcrypt.compareSync(password, user.password)) {
     return user;
   }
   return null;

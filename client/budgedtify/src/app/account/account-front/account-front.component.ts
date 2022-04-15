@@ -1,10 +1,21 @@
-import { Component, OnInit } from '@angular/core';
-
+import { Component } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogComponent } from '../dialog/dialog.component';
 @Component({
   selector: 'app-account-front',
   templateUrl: './account-front.component.html',
-  styleUrls: ['./account-front.component.css'],
+  styleUrls: ['./account-front.component.scss'],
 })
 export class AccountFrontComponent {
-  constructor() {}
+  constructor(public dialog: MatDialog) {}
+  
+  openDialog(): void {
+    const dialogRef = this.dialog.open(DialogComponent, {
+      width: '400px',
+      height:'450px'
+    });
+    dialogRef.afterClosed().subscribe((data) => {
+    });
+  }
+  
 }

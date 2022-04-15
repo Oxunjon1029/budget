@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="dialogmain__title_container" mat-dialog-title>
+      <div>Account Info</div>
+      <div class="dialogmain__title-btns" *ngFor="let el of data">
+        <mat-icon style="cursor: pointer" (click)="openDialog(el._id)"
+          >mode_edit</mat-icon
+        >
+        <mat-icon style="cursor: pointer" (click)="openDeleteDialog()"
+          >delete_outline</mat-icon
+        >
+        <mat-icon style="cursor: pointer" (click)="onNoClick()">clear</mat-icon>
+      </div>
+    </div>
+    <hr />
+    <div
+      class="dialogmain__content_container"
+      mat-dialog-content
+      *ngFor="let el of data"
+    >
+      <div class="dialogmain__content">Title: {{ el.title }}</div>
+      <div class="dialogmain__content">Amount: 4352.67$</div>
+      <div class="dialogmain__content">Description: {{ el.description }}</div>
+      <div class="dialogmain__content">Currency: {{ el.currency }}</div>
+    </div>
+    <div class="dialogmain__actions" mat-dialog-actions>
+      <button class="dialogmain__close-btn" mat-button (click)="onNoClick()">
+        Close
+      </button>
+    </div>
+  </body>
+</html>

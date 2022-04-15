@@ -1,0 +1,32 @@
+.dialogmain {
+  &__title_container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+  }
+  &__title-btns {
+    display: flex;
+    gap: 10px;
+  }
+  &__content_container {
+    display: flex;
+    width: 90%;
+    margin: 2rem auto;
+    height: 50%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+  }
+  &__content {
+    border-bottom: 1px solid;
+    padding: 14px;
+    width: 90%;
+  }
+  &__actions {
+    display: flex;
+    justify-content: flex-end;
+    width: 90%;
+    margin-top: 3rem;
+  }
+}

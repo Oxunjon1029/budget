@@ -1,0 +1,23 @@
+.rights {
+  &__container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2rem;
+    height: 85vh;
+  }
+
+  &__trans_btn,
+  &__pggb_btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 0.6rem;
+    padding: 8px;
+    font-weight: 800;
+    cursor: pointer;
+    background: rgba(223, 114, 255, 0.65);
+    border: 1px solid #3a3a3a;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  }
+}

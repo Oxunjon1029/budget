@@ -1,0 +1,97 @@
+.left-side {
+  &__container {
+    display: grid;
+    grid-gap: 10px;
+    width: 20vw;
+    height: 85vh;
+    overflow-y: auto;
+    overflow-x: unset;
+  }
+  &__container::-webkit-scrollbar {
+    display: none;
+  }
+  &__cards {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 150px;
+    padding: 0.6rem;
+    border-radius: 0.6rem;
+    background: linear-gradient(
+      106.7deg,
+      rgba(235, 50, 250, 0.961719) 5.53%,
+      rgba(204, 2, 255, 0.961719) 31.11%,
+      rgba(176, 61, 249, 0.961719) 50.47%,
+      rgba(136, 71, 241, 0.961719) 71.22%,
+      #8700f1 88.5%
+    );
+    border: 1px solid
+      linear-gradient(
+        106.7deg,
+        rgba(235, 50, 250, 0.961719) 5.53%,
+        rgba(204, 2, 255, 0.961719) 31.11%,
+        rgba(176, 61, 249, 0.961719) 50.47%,
+        rgba(136, 71, 241, 0.961719) 71.22%,
+        #8700f1 88.5%
+      );
+    color: white;
+  }
+  &__card-title,
+  &__card-content {
+    display: flex;
+    justify-content: space-between;
+    width: 16vw;
+  }
+ 
+  &__details {
+    background-color: transparent;
+    border: 0;
+    color: white;
+    cursor: pointer;
+  }
+  &__add-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(
+      106.7deg,
+      rgba(235, 50, 250, 0.961719) 5.53%,
+      rgba(204, 2, 255, 0.961719) 31.11%,
+      rgba(176, 61, 249, 0.961719) 50.47%,
+      rgba(136, 71, 241, 0.961719) 71.22%,
+      #8700f1 88.5%
+    );
+    border: 1px solid
+      linear-gradient(
+        106.7deg,
+        rgba(235, 50, 250, 0.961719) 5.53%,
+        rgba(204, 2, 255, 0.961719) 31.11%,
+        rgba(176, 61, 249, 0.961719) 50.47%,
+        rgba(136, 71, 241, 0.961719) 71.22%,
+        #8700f1 88.5%
+      );
+    border-top-right-radius: 0.4rem;
+    border-bottom-right-radius: 0.4rem;
+    color: white;
+    position: absolute;
+    left: 0;
+    bottom: 10px;
+    width: 4rem;
+    padding: 5px;
+    cursor: pointer;
+  }
+  &__amount,
+  &__title {
+    font-size: 1.1rem;
+  }
+  &__symbol {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid white;
+    font-size: 30px;
+  }
+}

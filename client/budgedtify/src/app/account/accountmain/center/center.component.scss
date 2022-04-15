@@ -1,0 +1,106 @@
+.center {
+  &__conatiner {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 85vh;
+  }
+  &__search-filter-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  
+  &__transactions-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    height: 60vh;
+    overflow-y: auto;
+    overflow-x: unset;
+  }
+  &__search-section {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.6rem;
+    border:1px solid;
+    padding: 8px;
+    margin-bottom: 10px;
+  }
+  &__search-input {
+    width: 100%;
+    outline: none;
+    border:0;
+    background-color: transparent;
+  }
+  &__transactions-container::-webkit-scrollbar {
+    display: none;
+  }
+  &__transaction-cards {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+    border-radius: 0.6rem;
+    background: #fffbfb;
+    border: 1px solid #3a3a3a;
+  }
+  &__btn-des-date {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+  }
+  &__des-date {
+    display: flex;
+    flex-direction: column;
+  }
+  &__amount {
+    display: flex;
+    align-items: center;
+  }
+  &__filter-section {
+    display: flex;
+    justify-content: space-between;
+    gap: 3rem;
+    width: 100%;
+    &__byDate {
+      display: flex;
+      gap: 5px;
+      align-items: center;
+    }
+
+    &__incom-expense-filter {
+      display: flex;
+      gap: 10px;
+    }
+  }
+  &__income_icon,
+  &__expense_icon {
+    display: flex;
+    align-items: center;
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 50%;
+    color: white;
+    padding: 5px;
+  }
+  &__income_icon {
+    background-color: green;
+  }
+  &__expense_icon {
+    background-color: red;
+  }
+  &__income-btn,
+  &__expense-btn {
+    display: flex;
+    align-items: center;
+    border-radius: 0.6rem;
+    gap: 5px;
+    padding: 5px;
+    font-weight: 800;
+    cursor: pointer;
+    border: 1px solid #3a3a3a;
+    background: #fffbfb;
+  }
+}

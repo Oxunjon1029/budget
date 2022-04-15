@@ -1,20 +1,51 @@
 .header {
-  background: blue;
   display: flex;
   padding: 2rem;
   color: #fff;
+  justify-content: space-between;
   &__logo {
-    width: 100%;
     text-align: center;
     align-self: center;
     font-size: 2rem;
   }
+  &__icon_button {
+    border: 0;
+    background-color: transparent;
+    font-weight: 500;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+  }
   &__logout {
-    align-self: center;
+    align-self: flex-end;
+    display: flex;
+    align-items: center;
+    color: #3a3a3a;
+    gap: 8px;
+    &:hover {
+      cursor: pointer;
+    }
+    p {
+    }
     a {
+      text-decoration: none;
+      color: #fff;
+    }
+  }
+
+  &__ul-panel {
+    display: flex;
+    a {
+      margin-right: 10px;
+      font-weight: 500;
+      border: none;
+      background-color: transparent;
+      font-size: 1rem;
+      color: #3a3a3a;
       text-decoration: none;
     }
   }
+  &__active-btn {
+    text-decoration: underline !important;
+  }
 }
-
-

@@ -25,15 +25,15 @@
               matInput
               placeholder="email@domain.com"
               formControlName="email"
-              class="aut__input"
+              class="auth__input"
             />
             <mat-error
-              *ngIf="isValidControllers['email'].errors?.['required'] && isValidControllers['email'].dirty"
+              *ngIf="isValidControllers['email'].touched && isValidControllers['email'].errors?.['required'] && isValidControllers['email'].dirty"
             >
               Required field is empty
             </mat-error>
             <mat-error
-              *ngIf="isValidControllers['email'].errors?.['email'] && isValidControllers['email'].dirty"
+              *ngIf="isValidControllers['email'].touched && isValidControllers['email'].errors?.['email'] && isValidControllers['email'].dirty"
             >
               Please enter valid email
             </mat-error>
@@ -41,11 +41,20 @@
           <mat-form-field class="auth__form_row" appearance="outline">
             <mat-label>Password</mat-label>
             <input
-              type="password"
-              class="auth_input"
+              [type]="hide ? 'password' : 'text'"
+              class="auth__input"
               matInput
               formControlName="password"
             />
+            <button
+              mat-icon-button
+              matSuffix
+              (click)="hide = !hide"
+              [attr.aria-label]="'Hide password'"
+              [attr.aria-pressed]="hide"
+            >
+              <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
+            </button>
             <mat-error
               *ngIf="isValidControllers['password'].errors?.['required'] && isValidControllers['email'].dirty"
               >Required field is empty</mat-error
@@ -54,7 +63,7 @@
           <button
             type="submit"
             [disabled]="loginForm.invalid"
-            style="width: 100%"
+            style="width: 100%; background: #8cd0dd"
             color="primary"
             mat-raised-button
           >

@@ -1,13 +1,21 @@
 const express = require("express");
 const router = express.Router();
-
-router.post('/add', (req, res) => {
-  console.log('req', req);
+const Currency = require('../models/Currency');
+router.post('/add', async (req, res) => {
+  const { name, symbol } = req.body;
+  const currency = await new Currency({ name: name, symbol: symbol });
+  currency.save();
+  res.send(currency)
   res.send("currency created succesfully");
 })
 
 
-router.get('/', (req, res) => {
+router.get('/', async (req, res) => {
+  const allcurrencyObject = await Currency.find({});
+  allcurrencyObject.forEach((currency)=>{
+    allcurrencyObject[currency._id] = currency;
+  })
+  res.send(allcurrencyObject);
   res.send("Getting currency");
 })
 

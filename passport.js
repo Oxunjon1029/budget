@@ -1,11 +1,9 @@
 const db = require("./database");
 
-const jwtCallback = (jwt_payload, done) => {
-  const user = db.getUserByEmail(jwt_payload.email);
-  if (user) {
-    done(null, user);
-  }
-  done(null, false);
+const jwtCallback = async (jwt_payload, done) => {
+  const user = await db.getUserByEmail(jwt_payload.email);
+  console.log('user', user);
+  done(null, user || false);
 }
 
 module.exports = {
