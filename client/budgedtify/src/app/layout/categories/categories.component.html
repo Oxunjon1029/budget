@@ -21,12 +21,20 @@
       <div class="category__cards-btns-section">
         <div class="category__cards-section">
           <div class="category__cards" *ngFor="let category of categories">
-            <div class="category__cards-title">
+            <div class="category__cards-title" *ngIf="!isEditable">
               {{ category.title }}
             </div>
+            <form action="" *ngIf="isEditable">
+              <mat-form-field appearance="legacy" style="width: 50%">
+                <input type="text" matInput />
+              </mat-form-field>
+            </form>
             <div class="category__cards-btns">
               <div class="category__cards-edit-btn">
-                <mat-icon>mode_edit</mat-icon>
+                <mat-icon *ngIf="!isEditable" (click)="makeItEditable()"
+                  >mode_edit</mat-icon
+                >
+                <mat-icon *ngIf="isEditable">done</mat-icon>
               </div>
               <div class="category__cards-delete-btn">
                 <mat-icon>delete_outline</mat-icon>

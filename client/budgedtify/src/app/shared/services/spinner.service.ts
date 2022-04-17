@@ -10,14 +10,13 @@ export class SpinnerService {
   );
   constructor() {}
 
-  getIsSpinnerVisible$():Observable<boolean> {
+  getIsSpinnerVisible$(): Observable<boolean> {
     return this.isSpinnerVisible$
       .asObservable()
       .pipe(observeOn(asyncScheduler));
   }
 
   showSpinner() {
-    console.log('showSpinner');
     this.isSpinnerVisible$.next(true);
   }
 

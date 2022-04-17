@@ -9,11 +9,11 @@
   <body>
     <div class="dialogmain__title_container" mat-dialog-title>
       <div>Account Info</div>
-      <div class="dialogmain__title-btns" *ngFor="let el of data">
-        <mat-icon style="cursor: pointer" (click)="openDialog(el._id)"
+      <div class="dialogmain__title-btns">
+        <mat-icon style="cursor: pointer" (click)="openDialog(id)"
           >mode_edit</mat-icon
         >
-        <mat-icon style="cursor: pointer" (click)="openDeleteDialog()"
+        <mat-icon style="cursor: pointer" (click)="openDeleteDialog(id)"
           >delete_outline</mat-icon
         >
         <mat-icon style="cursor: pointer" (click)="onNoClick()">clear</mat-icon>

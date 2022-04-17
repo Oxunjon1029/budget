@@ -29,6 +29,8 @@
     gap: 30px;
     border: 1px solid green;
     border-radius: 0.6rem;
+    min-width: 320px;
+    min-height: 50px;
   }
   &__cards-title {
     display: flex;
@@ -41,6 +43,7 @@
   &__cards-edit-btn,
   &__cards-delete-btn {
     border: 0;
+    cursor: pointer;
   }
   &__btns-section {
     display: flex;

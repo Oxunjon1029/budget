@@ -11,6 +11,8 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './auth/auth.interceptor';
 import { AccountModule } from './account/account.module';
 import { LayoutModule } from './layout/layout.module';
+import { SnackbarserviceService } from './app/snackbarservice.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [AppComponent, NotFoundComponent],

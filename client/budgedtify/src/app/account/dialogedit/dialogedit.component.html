@@ -5,18 +5,17 @@
   >
 </div>
 <hr />
-<div class="edit-account__content" *ngFor="let account of accounts">
+<div class="edit-account__content">
   <form
     [formGroup]="EditAccountForm"
     class="edit-account__content-form"
     mat-dialog-content
     
-    (ngSubmit)="editAccounts(account._id)"
+    (ngSubmit)="editAccounts(id)"
   >
     <mat-form-field appearance="fill" class="edit-account__matForm">
       <mat-label>Title</mat-label>
       <input
-        value="{{ account.title }}"
         type="text"
         matInput
         required
@@ -60,7 +59,6 @@
       <mat-label>Description</mat-label>
       <textarea
         matInput
-        value="{{ account.description }}"
         formControlName="description"
       ></textarea>
     </mat-form-field>

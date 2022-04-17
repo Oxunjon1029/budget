@@ -8,6 +8,7 @@ import { Categories } from './categories.interface';
 })
 export class CategoriesComponent {
   constructor() {}
+  isEditable: boolean = false;
 
   categories: Categories[] = [
     {
@@ -101,4 +102,8 @@ export class CategoriesComponent {
       title: 'Food',
     },
   ];
+
+  makeItEditable(): void {
+    this.isEditable = true;
+  }
 }

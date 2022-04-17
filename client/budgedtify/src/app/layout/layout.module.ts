@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
-import { MenuComponent } from './menu/menu.component';
 import { SharedModule } from '../shared/shared.module';
 import { RouterModule, Routes } from '@angular/router';
 import { CategoriesComponent } from './categories/categories.component';
@@ -19,10 +18,9 @@ const routes: Routes = [
   declarations: [
     HeaderComponent,
     FooterComponent,
-    MenuComponent,
     CategoriesComponent,
   ],
   imports: [CommonModule, SharedModule, RouterModule.forChild(routes)],
-  exports: [HeaderComponent, FooterComponent, MenuComponent],
+  exports: [HeaderComponent, FooterComponent],
 })
 export class LayoutModule {}

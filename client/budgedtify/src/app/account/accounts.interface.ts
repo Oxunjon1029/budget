@@ -3,4 +3,5 @@ export interface Accounts {
   title: string;
   description: string;
   currency: string;
+  status:number
 }

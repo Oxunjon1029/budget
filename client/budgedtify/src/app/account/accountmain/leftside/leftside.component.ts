@@ -1,16 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Subject, takeUntil } from 'rxjs';
 import { AccountFrontService } from '../../account-front.service';
 import { Accounts } from '../../accounts.interface';
 import { DialogComponent } from '../../dialog/dialog.component';
 import { DialogmainComponent } from '../../dialogmain/dialogmain.component';
-class AllAccounts {
-  constructor(
-    public title: string,
-    public description: string,
-    public createdAt: string
-  ) {}
-}
+
 @Component({
   selector: 'app-leftside',
   templateUrl: './leftside.component.html',
@@ -22,18 +17,19 @@ export class LeftsideComponent implements OnInit {
     public dialog: MatDialog
   ) {}
   responsedata: Accounts[] = [];
-
+  controlSubject: Subject<boolean> = new Subject();
   ngOnInit(): void {
-    this.accountService.getAllAccounts().subscribe(
-      (data: Accounts[]) => {
-        if (data !== null) {
+    this.accountService.getAccounts().subscribe((data: Accounts[]) => {
+      this.responsedata = data;
+    });
+    if (!this.responsedata.length) {
+      this.accountService
+        .getAllAccounts()
+        .pipe(takeUntil(this.controlSubject))
+        .subscribe((data: Accounts[]) => {
           this.responsedata = data;
-        }
-      },
-      (err) => {
-        console.log(err);
-      }
-    );
+        });
+    }
   }
 
   openDialog(): void {
@@ -47,8 +43,7 @@ export class LeftsideComponent implements OnInit {
     this.accountService.getAccountById(id).subscribe(
       (data: Accounts[]) => {
         if (data !== null) {
-          console.log(data, +' ' + ' ' + data);
-
+          localStorage.setItem('id', data[0]._id);
           const dialogRef = this.dialog.open(DialogmainComponent, {
             width: '400px',
             height: '450px',
@@ -57,9 +52,7 @@ export class LeftsideComponent implements OnInit {
           dialogRef.afterClosed().subscribe(() => {});
         }
       },
-      (err) => {
-        console.log(err);
-      }
+      (err: Accounts[]) => {}
     );
   }
 }

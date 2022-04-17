@@ -1,38 +1,47 @@
-import { Component } from '@angular/core';
+import { Component, Inject, InjectionToken, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Subject, takeUntil } from 'rxjs';
+import { SpinnerService } from 'src/app/shared/services/spinner.service';
 import { AccountFrontService } from '../account-front.service';
 import { Accounts } from '../accounts.interface';
-
+const ID = new InjectionToken<string>('id', {
+  providedIn: 'root',
+  factory: () => '',
+});
 @Component({
   selector: 'app-deletedialog',
   templateUrl: './deletedialog.component.html',
   styleUrls: ['./deletedialog.component.scss'],
 })
-export class DeletedialogComponent {
+export class DeletedialogComponent implements OnInit {
   constructor(
     private accountService: AccountFrontService,
     private dialogRef: MatDialogRef<DeletedialogComponent>,
-    public id: string
+    private spinnerService: SpinnerService,
+    @Inject(ID) public id: string
   ) {}
   controlSubject: Subject<boolean> = new Subject();
   onNoClick(): void {
     this.dialogRef.close();
   }
   account: Accounts[] = [];
-  onDeleteAccount(id: string) {
+  ngOnInit() {
     this.accountService
-      .deleteAccount(id)
+      .getAllAccounts()
       .pipe(takeUntil(this.controlSubject))
-      .subscribe(
-        (data: Accounts[]) => {
-          this.id = data[0]._id;
-          console.log(data[0]._id);
-        },
-        (err) => {
-          console.log(err, +'id :');
-        }
-      );
+      .subscribe((data: Accounts[]) => {
+        const account = data.filter(
+          (x) => x._id === localStorage.getItem('id')
+        );
+        this.id = account[0]._id;
+      });
+  }
+  onDeleteAccount(id: string) {
+    this.accountService.deleteAccount(id);
+    this.spinnerService.showSpinner();
+    setTimeout(() => {
+      this.spinnerService.hideSpinner();
+    }, 2000);
     this.dialogRef.close();
   }
 }
