@@ -1,9 +1,7 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
-import { Router } from '@angular/router';
-import { Subject, takeUntil } from 'rxjs';
-import { SpinnerService } from 'src/app/shared/services/spinner.service';
+import { Subject } from 'rxjs';
 import { AccountFrontService } from '../account-front.service';
 import { Accounts } from '../accounts.interface';
 import { Currencies } from '../currencies.interface';
@@ -16,9 +14,7 @@ import { Currencies } from '../currencies.interface';
 export class DialogComponent implements OnInit {
   constructor(
     private dialogRef: MatDialogRef<DialogComponent>,
-    private accountService: AccountFrontService,
-    private router: Router,
-    private spinnerService: SpinnerService
+    private accountService: AccountFrontService
   ) {}
   currencies: Currencies[] = [];
   controlSubject: Subject<boolean> = new Subject();

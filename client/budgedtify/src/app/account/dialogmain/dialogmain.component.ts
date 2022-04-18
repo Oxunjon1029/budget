@@ -8,7 +8,6 @@ import { Subject, takeUntil } from 'rxjs';
 import { AccountFrontService } from '../account-front.service';
 import { Accounts } from '../accounts.interface';
 import { DeletedialogComponent } from '../deletedialog/deletedialog.component';
-import { DialogComponent } from '../dialog/dialog.component';
 import { DialogeditComponent } from '../dialogedit/dialogedit.component';
 const ID = new InjectionToken<string>('id', {
   providedIn: 'root',
@@ -69,7 +68,7 @@ export class DialogmainComponent {
           dialogRefDelete.afterClosed();
           this.onNoClick();
         },
-        (err: Accounts[]) => {
+        (err) => {
           this.accountService.refReshToken(err);
           console.log(err);
           

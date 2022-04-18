@@ -9,7 +9,7 @@ const Category = new mongoose.Schema({
     type:String,
     required:true,
     enum:{
-      values:['incomes','expenses']
+      values:['income','expense']
     }
   }
 });

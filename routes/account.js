@@ -18,7 +18,9 @@ router.get('/', auth, async (req, res) => {
   allaccounts.forEach((account) => {
     allaccounts[account._id] = account;
   })
-  return res.send(allaccounts)
+  if (allaccounts) {
+    return res.status(200).send(allaccounts)
+  }
 })
 
 router.get('/:id', auth, async (req, res) => {

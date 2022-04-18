@@ -6,6 +6,8 @@ import { SharedModule } from '../shared/shared.module';
 import { RouterModule, Routes } from '@angular/router';
 import { CategoriesComponent } from './categories/categories.component';
 import { AuthGuard } from '../auth/auth.guard';
+import { CategorydialogComponent } from './categorydialog/categorydialog.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 const routes: Routes = [
   {
@@ -19,8 +21,10 @@ const routes: Routes = [
     HeaderComponent,
     FooterComponent,
     CategoriesComponent,
+    CategorydialogComponent,
   ],
-  imports: [CommonModule, SharedModule, RouterModule.forChild(routes)],
+  imports: [CommonModule, SharedModule, RouterModule.forChild(routes),ReactiveFormsModule],
   exports: [HeaderComponent, FooterComponent],
+  entryComponents:[CategorydialogComponent]
 })
 export class LayoutModule {}

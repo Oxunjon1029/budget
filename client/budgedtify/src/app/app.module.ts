@@ -32,6 +32,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
       useClass: AuthInterceptor,
       multi: true,
     },
+    
   ],
   bootstrap: [AppComponent],
 })

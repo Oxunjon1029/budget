@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observable, Subject, takeUntil } from 'rxjs';
@@ -24,9 +24,11 @@ export class AccountFrontService {
     return this.accounts.asObservable();
   }
   UpdateAccountsList(): void {
-    this.http.get<Accounts[]>('http://localhost:3000/accounts').subscribe((v: Accounts[]) => {
-      this.accounts.next(v);
-    });
+    this.http
+      .get<Accounts[]>('http://localhost:3000/accounts')
+      .subscribe((v: Accounts[]) => {
+        this.accounts.next(v);
+      });
   }
   controlSubject: Subject<boolean> = new Subject();
   createAccount(title: string, currency: string, description: string) {
@@ -56,7 +58,9 @@ export class AccountFrontService {
             console.log(res);
           }
         },
-        (err: Accounts[]) => {}
+        (err) => {
+          this.refReshToken(err);
+        }
       );
   }
   getCurrencies(): Observable<Currencies[]> {
@@ -90,24 +94,33 @@ export class AccountFrontService {
             this.spinnerService.hideSpinner();
           }, 2000);
         },
-        (err: Accounts[]) => {}
+        (err) => {
+          this.refReshToken(err);
+        }
       );
   }
   deleteAccount(id: string) {
     this.http
       .delete<Accounts[]>(`http://localhost:3000/accounts/deleteAccount/${id}`)
-      .subscribe((res: Accounts[]) => {
-        this.UpdateAccountsList();
-      });
+      .subscribe(
+        (res: Accounts[]) => {
+          this.UpdateAccountsList();
+        },
+        (err) => {
+          this.refReshToken(err);
+        }
+      );
   }
 
-  refReshToken(err: Accounts[]) {
-    if (err[0].status === 401) {
+  async refReshToken(err: HttpErrorResponse) {
+    if (err.status === 401) {
       localStorage.removeItem('idToken');
       localStorage.removeItem('id');
       localStorage.removeItem('expiresIn');
-      window.location.reload();
-      this.router.navigateByUrl('/login');
+      localStorage.removeItem('categoryId');
+      localStorage.removeItem("userId")
+      await window.location.reload();
+      await this.router.navigateByUrl('/login');
     }
   }
 }

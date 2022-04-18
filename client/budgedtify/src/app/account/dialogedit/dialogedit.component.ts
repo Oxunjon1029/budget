@@ -24,7 +24,6 @@ export class DialogeditComponent implements OnInit {
     private dialogRef: MatDialogRef<DialogeditComponent>,
     private accountService: AccountFrontService,
     @Inject(ID) public id: string,
-    private spinnerService: SpinnerService
   ) {}
   EditAccountForm: FormGroup = new FormGroup({
     title: new FormControl('', [

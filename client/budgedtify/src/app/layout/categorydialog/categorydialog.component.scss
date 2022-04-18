@@ -1,0 +1,50 @@
+.categorydialog {
+  &__title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  &__income_icon,
+  &__expense_icon {
+    display: flex;
+    align-items: center;
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 50%;
+    color: white;
+    justify-content: center;
+    align-self: center;
+  }
+  &__income_icon {
+    background-color: green;
+  }
+  &__expense_icon {
+    background-color: red;
+  }
+  &__income-btn,
+  &__expense-btn {
+    display: flex;
+    align-items: center;
+    border-radius: 0.6rem;
+    gap: 5px;
+    font-weight: 800;
+    cursor: pointer;
+    width: 150px;
+    font-size: 20px;
+  }
+  &__content {
+    &__btns-container {
+      display: flex;
+      gap: 5px;
+      justify-content: center;
+      align-items: center;
+      border: 0;
+    }
+  }
+  &__actions {
+    display: flex;
+    margin-top: 7rem;
+    justify-content: flex-end;
+    gap: 5px;
+  }
+}
