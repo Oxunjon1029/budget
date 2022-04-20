@@ -13,7 +13,6 @@ import { CenterComponent } from './accountmain/center/center.component';
 import { RightsideComponent } from './accountmain/rightside/rightside.component';
 import { DeletedialogComponent } from './deletedialog/deletedialog.component';
 import { DialogeditComponent } from './dialogedit/dialogedit.component';
-// import { DialogeditComponent } from './dialogedit/dialogedit.component';
 const routes: Routes = [
   {
     path: 'accounts',

@@ -1,35 +1,50 @@
-import { TestBed } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
+import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
+import { of, throwError } from 'rxjs';
 import { AppComponent } from './app.component';
+import { AuthService } from './auth/auth.service';
+import { SpinnerService } from './shared/services/spinner.service';
 
 describe('AppComponent', () => {
+  let mockAuthService: jasmine.SpyObj<AuthService>;
+  let router: Router;
+  let component: AppComponent;
+  let fixture: ComponentFixture<AppComponent>;
+
   beforeEach(async () => {
+    
+    mockAuthService = jasmine.createSpyObj('AuthService', [
+      'isLoggedIn',
+      'logout',
+    ]);
+
     await TestBed.configureTestingModule({
-      imports: [
-        RouterTestingModule
-      ],
-      declarations: [
-        AppComponent
+      imports: [RouterTestingModule],
+      declarations: [AppComponent],
+      providers: [
+        { provide: AuthService, useValue: mockAuthService },
       ],
     }).compileComponents();
+    router = TestBed.inject(Router);
+    fixture = TestBed.createComponent(AppComponent);
+    component = fixture.componentInstance;
   });
 
   it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
+    expect(component).toBeTruthy();
   });
 
-  it(`should have as title 'budgedtify'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('budgedtify');
+
+  it('isLoggedIn', () => {
+    mockAuthService.isLoggedIn.and.returnValue(true);
+    const result = component.isLoggedIn;
+    expect(result).toBe(true);
   });
 
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('budgedtify app is running!');
+  it('logout', () => {
+    spyOn(router, 'navigateByUrl');
+    component.logout();
+    expect(router.navigateByUrl).toHaveBeenCalledOnceWith('/login');
   });
 });

@@ -5,14 +5,13 @@ const Category = new mongoose.Schema({
     type: String,
     required: true
   },
-  Type: [
-    {
-      expenseId: false
-    },
-    {
-      incomeId: true
+  Type: {
+    type:String,
+    required:true,
+    enum:{
+      values:['income','expense']
     }
-  ]
+  }
 });
 
 module.exports = mongoose.model('Category', Category);

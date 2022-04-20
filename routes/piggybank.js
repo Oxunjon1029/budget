@@ -2,7 +2,6 @@ const express = require("express");
 const router = express.Router();
 
 router.post('/add', (req, res) => {
-  console.log('req', req);
   res.send("piggy bank created succesfully");
 })
 

@@ -2,11 +2,12 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
-import { MenuComponent } from './menu/menu.component';
 import { SharedModule } from '../shared/shared.module';
 import { RouterModule, Routes } from '@angular/router';
 import { CategoriesComponent } from './categories/categories.component';
 import { AuthGuard } from '../auth/auth.guard';
+import { CategorydialogComponent } from './categorydialog/categorydialog.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 const routes: Routes = [
   {
@@ -19,10 +20,11 @@ const routes: Routes = [
   declarations: [
     HeaderComponent,
     FooterComponent,
-    MenuComponent,
     CategoriesComponent,
+    CategorydialogComponent,
   ],
-  imports: [CommonModule, SharedModule, RouterModule.forChild(routes)],
-  exports: [HeaderComponent, FooterComponent, MenuComponent],
+  imports: [CommonModule, SharedModule, RouterModule.forChild(routes),ReactiveFormsModule],
+  exports: [HeaderComponent, FooterComponent],
+  entryComponents:[CategorydialogComponent]
 })
 export class LayoutModule {}

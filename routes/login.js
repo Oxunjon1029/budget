@@ -18,13 +18,13 @@ router.post("/", async (req, res) => {
       process.env.JWT_SECRET,
       { expiresIn: process.env.JWT_EXPIRES_IN }
     );
-    res.status(200).json({
+    return res.status(200).json({
       Authorization: `Bearer ${token}`,
       expiresIn: 6 * 10 * 60 * 100,
-      userId:user._id
+      userId: user._id
     })
   } else {
-    res.status(401).json({ message: "Invalid credentials" })
+    return res.status(401).json({ message: "Invalid credentials" })
   }
 })
 

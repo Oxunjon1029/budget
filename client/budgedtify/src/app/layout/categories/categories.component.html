@@ -20,16 +20,45 @@
       </div>
       <div class="category__cards-btns-section">
         <div class="category__cards-section">
-          <div class="category__cards" *ngFor="let category of categories">
-            <div class="category__cards-title">
+          <div
+            style="
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              padding: 10px;
+              border-radius: 0.6rem;
+              width: 320px;
+              height: 50px;
+            "
+            *ngFor="let category of categories"
+            [ngClass]="category.Type"
+          >
+            <div class="category__cards-title" *ngIf="!isEditable">
               {{ category.title }}
             </div>
+            <form action="" *ngIf="isEditable" [formGroup]="editCategoryForm">
+              <mat-form-field appearance="legacy" style="width: 50%">
+                <input type="text" matInput formControlName="title" />
+              </mat-form-field>
+            </form>
             <div class="category__cards-btns">
               <div class="category__cards-edit-btn">
-                <mat-icon>mode_edit</mat-icon>
+                <mat-icon
+                  mat-button
+                  *ngIf="!isEditable"
+                  (click)="makeItEditable(category._id)"
+                  >mode_edit</mat-icon
+                >
+                <mat-icon
+                  type="submit"
+                  (click)="editCategory(category._id)"
+                  mat-button
+                  *ngIf="isEditable"
+                  >done</mat-icon
+                >
               </div>
               <div class="category__cards-delete-btn">
-                <mat-icon>delete_outline</mat-icon>
+                <mat-icon mat-button (click)="deleteCategory(category._id)">delete_outline</mat-icon>
               </div>
             </div>
           </div>
@@ -52,7 +81,10 @@
             </div>
           </button>
           <button class="category__trans_btn" mat-raised-button>
-            <div style="display: flex; gap: 10px">
+            <div
+              style="display: flex; gap: 10px"
+              (click)="openCreateCategoryDialog()"
+            >
               <div style="display: flex; align-self: center">
                 <mat-icon style="color: white">add_circle</mat-icon>
               </div>

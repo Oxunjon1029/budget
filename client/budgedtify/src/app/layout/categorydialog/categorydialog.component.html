@@ -1,0 +1,56 @@
+<div class="categorydialog__title" mat-dialog-title>
+  <div>Create Category</div>
+  <mat-icon (click)="onNoClick()">clear</mat-icon>
+</div>
+<hr />
+<div class="categorydialog__content">
+  <form
+    action=""
+    [formGroup]="createCategoryForm"
+    (ngSubmit)="createCategory()"
+    style="margin-top: 20px"
+  >
+    <mat-button-toggle-group
+      class="categorydialog__content__btns-container"
+      formControlName="Type"
+    >
+      <mat-button-toggle class="categorydialog__income-btn" value="income" >
+        <div style="display: flex; gap: 10px">
+          <div class="categorydialog__income_icon">
+            <mat-icon>arrow_upward</mat-icon>
+          </div>
+          Income
+        </div>
+      </mat-button-toggle>
+      <mat-button-toggle class="categorydialog__expense-btn" value="expense">
+        <div style="display: flex; gap: 10px">
+          <div class="categorydialog__expense_icon">
+            <mat-icon>arrow_downward</mat-icon>
+          </div>
+          Expense
+        </div>
+      </mat-button-toggle>
+    </mat-button-toggle-group>
+    <mat-form-field appearance="outline" style="padding: 10px; width: 100%">
+      <mat-label>Title</mat-label>
+      <input type="text" formControlName="title" matInput />
+    </mat-form-field>
+    <div class="categorydialog__actions">
+      <button
+        class="categorydialog__close-btn"
+        (click)="onNoClick()"
+        mat-raised-button
+      >
+        Close
+      </button>
+      <button
+        mat-raised-button
+        type="submit"
+        [disabled]="createCategoryForm.invalid"
+        class="categorydialog__save-btn"
+      >
+        Save
+      </button>
+    </div>
+  </form>
+</div>

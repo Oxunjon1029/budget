@@ -9,8 +9,7 @@ router.post('/add', auth, async (req, res) => {
   const symbol = await Currency.find({})
   const account = await new Accounts({ title: title, currency: currency, description: description, user_id: req.user._id, symbol: symbol.symbol });
   await account.save();
-  res.status(200).json(account);
-  res.send("Account added succesfully");
+  return res.status(200).json(account);
 })
 
 
@@ -19,29 +18,35 @@ router.get('/', auth, async (req, res) => {
   allaccounts.forEach((account) => {
     allaccounts[account._id] = account;
   })
-  res.send(allaccounts)
-  res.send("Getting all accounts");
+  if (allaccounts) {
+    return res.status(200).send(allaccounts)
+  }
 })
 
 router.get('/:id', auth, async (req, res) => {
   const account = await Accounts.find({ _id: req.params.id });
-  res.status(200).send(account);
+  if (account) {
+    return res.status(200).send(account);
+  }
+  return res.status(401).json({ message: "Unathorized" })
 })
 router.post('/edit/:id', auth, async (req, res) => {
-  const { title, description, currency } = req.body
-  const account = await Accounts.findOneAndUpdate(req.params.id, { title: title, description: description, currency: currency }, { new: true });
-  account.save()
-  res.send(account)
-  res.send("Updated succesfully");
+
+  const account = await Accounts.findByIdAndUpdate(req.params.id, { title: req.body.title, description: req.body.description, currency: req.body.currency }, { new: true });
+  if (account) {
+    return res.status(200).json(account)
+  }
+  return res.status(401).json({ message: "Unathorized" })
 })
 
 router.delete('/deleteAccount/:id', auth, async (req, res) => {
-  await Accounts.findOneAndDelete({ _id: req.params.id }, function (err, res) {
-    response.setHeader("Content-Type", "text/html");
-    console.log("Deleting Product " + req.params.id);
-    res.render('deleted')
-    res.status(200).json({ message: "Deleted successfully" })
-  });
+  try {
+    const account = await Accounts.findById(req.params.id);
+    await account.remove();
+    return res.status(200).json({ message: "Account has been deleted successfully" })
+  } catch {
+    return res.status(401).json({ message: "Unathorized" })
+  }
 })
 
 module.exports = router;

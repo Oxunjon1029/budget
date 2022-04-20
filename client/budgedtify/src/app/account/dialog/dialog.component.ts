@@ -1,10 +1,10 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
-import { Router } from '@angular/router';
-import { Subject, takeUntil } from 'rxjs';
+import { Subject } from 'rxjs';
 import { AccountFrontService } from '../account-front.service';
 import { Accounts } from '../accounts.interface';
+import { Currencies } from '../currencies.interface';
 
 @Component({
   selector: 'app-dialog',
@@ -14,18 +14,16 @@ import { Accounts } from '../accounts.interface';
 export class DialogComponent implements OnInit {
   constructor(
     private dialogRef: MatDialogRef<DialogComponent>,
-    private accountService: AccountFrontService,
-    private router: Router,
+    private accountService: AccountFrontService
   ) {}
-  currencies: any;
+  currencies: Currencies[] = [];
   controlSubject: Subject<boolean> = new Subject();
   ngOnInit(): void {
     console.log(
-      this.accountService.getCurrencies().subscribe((data) => {
+      this.accountService.getCurrencies().subscribe((data: Currencies[]) => {
         this.currencies = data;
       })
     );
-    
   }
   createAccountForm: FormGroup = new FormGroup({
     title: new FormControl('', [
@@ -47,27 +45,9 @@ export class DialogComponent implements OnInit {
   onCreateAccount(): void {
     const { title, currency, description } = this.createAccountForm.value;
     if (this.createAccountForm.valid) {
-      this.accountService
-        .createAccount(title, currency, description)
-        .pipe(takeUntil(this.controlSubject))
-        .subscribe(
-          (res: Accounts[]) => {
-            if (res !== null) {
-              this.resdata = res;
-              if (window.location.pathname === '/accountsMain') {
-                window.location.reload();
-              } else {
-                this.router.navigateByUrl('/accountsMain');
-              }
-              console.log(res);
+      this.accountService.createAccount(title, currency, description);
 
-              this.dialogRef.close();
-            }
-          },
-          (err) => {
-            console.log(err);
-          }
-        );
+      this.dialogRef.close();
     }
   }
 }
